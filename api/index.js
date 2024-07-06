@@ -1,8 +1,15 @@
 import Fastify from 'fastify'
+import multipart from 'fastify-multipart'
+
+import student from './routes/student.js'
 
 const app = Fastify({
   logger: true,
 })
+
+app.register(multipart)
+
+app.register(student, ({ prefix: '/student' }))
 
 app.get('/', async (req, reply) => {
   return reply.status(200).type('text/html').send(html)

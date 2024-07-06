@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "fastify": "^4.25.2"
+    "fastify": "^4.25.2",
+    "fastify-multipart": "^5.4.0"
   }
 }
