@@ -1,10 +1,26 @@
 {
   "name": "fastify",
-  "repository": "https://github.com/vercel/examples.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vercel/examples.git"
+  },
   "license": "MIT",
   "private": true,
   "dependencies": {
     "fastify": "^4.25.2",
     "fastify-multipart": "^5.4.0"
-  }
+  },
+  "description": "This example shows how to use Fastify with Vercel Functions.",
+  "bugs": {
+    "url": "https://github.com/vercel/examples/issues"
+  },
+  "homepage": "https://github.com/vercel/examples#readme",
+  "version": "1.0.0",
+  "main": "api/index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": ""
 }
