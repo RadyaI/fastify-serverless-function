@@ -1,12 +1,12 @@
 import Fastify from 'fastify'
 import multipart from 'fastify-multipart'
+import 'dotenv'
 
-import student from './routes/student.js'
+import student from './routes/studentRoutes.js'
 
 const app = Fastify({
   logger: true,
 })
-
 app.register(multipart)
 
 app.register(student, ({ prefix: '/student' }))

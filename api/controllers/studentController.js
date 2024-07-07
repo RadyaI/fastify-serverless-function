@@ -1,16 +1,15 @@
-function getStudent(req, reply) {
-    reply.send(
-        [
-            {
-                nama: "Muhammad",
-                sekolah: "SMK Telkom Malang"
-            },
-            {
-                nama: "Radya",
-                sekolah: "SMk Telkom Bandung"
-            }
-        ]
-    )
+import { get, create } from "../service/studentService"
+
+async function getStudent(req, reply) {
+    const siswaData = await get()
+    reply.send(siswaData)
 }
 
-export { getStudent }
+async function createStudent(req, reply) {
+    const data = req.body
+    const result = await create(data)
+    reply.send(result)
+    
+}
+
+export { getStudent, createStudent }
