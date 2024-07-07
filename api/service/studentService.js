@@ -15,7 +15,7 @@ async function create(data) {
     let siswaData = data
     try {
         const send = await addDoc(collection(db, 'siswa'), siswaData)
-        return { result: send, status: true }
+        return { status: true, result: send }
     } catch (error) {
         console.log(error)
     }

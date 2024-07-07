@@ -1,21 +1,28 @@
-# Fastify + Vercel
+# API untuk Latihan
 
-This example shows how to use Fastify with Vercel Functions.
+API ini dibuat untuk keperluan belajar saja. API ini menyediakan operasi CRUD (Create, Read, Update, Delete) untuk entitas student/siswa.
 
-## Demo
+## List API
 
-https://fastify-example.vercel.app/
+- **GET** `api.radya.fun/student` - Mengambil daftar semua siswa
+- **POST** `api.radya.fun/student` - Menambahkan data siswa baru
+- **PUT** `api.radya.fun/student/:id` - Memperbarui data siswa berdasarkan ID
+- **DELETE** `api.radya.fun/student/:id` - Menghapus data siswa berdasarkan ID
 
-## Running Locallly
+## Contoh Penggunaan Fetch API
 
-```bash
-npm i
-npm i -g vercel@latest
-vercel dev
+```javascript
+async function fetchStudents() {
+    try {
+        const response = await fetch('https://api.radya.fun/student');
+        const students = await response.json();
+        console.log(students);
+    } catch (error) {
+        console.error('Error fetching students:', error);
+    }
+}
+
+fetchStudents();
 ```
 
-## One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/starter/fastify&project-name=fastify&repository-name=fastify)
+Made by [Radya](https://radya.fun)
