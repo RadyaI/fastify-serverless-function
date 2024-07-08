@@ -36,7 +36,7 @@ const html = `
 <body>
     <h1>API untuk Latihan</h1>
     <p>
-        API ini dibuat untuk keperluan belajar saja. API ini menyediakan operasi CRUD (Create, Read, Update, Delete) untuk entitas student/siswa.
+        Ini API cuma buat belajar/ngetes aja sih, isinya CRUD siswa/student gitu.
     </p>
     <h2>List API</h2>
     <ul>

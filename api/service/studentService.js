@@ -14,10 +14,11 @@ async function get() {
 async function create(data) {
     let siswaData = data
     try {
-        const send = await addDoc(collection(db, 'siswa'), siswaData)
-        return { status: true, result: send }
+        await addDoc(collection(db, 'siswa'), siswaData)
+        return { status: true }
     } catch (error) {
         console.log(error)
+        return { status: false }
     }
 }
 
