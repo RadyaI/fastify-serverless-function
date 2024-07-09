@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore'
 import { db } from '../database/firebase'
 
 async function get() {
@@ -22,4 +22,45 @@ async function create(data) {
     }
 }
 
-export { get, create }
+async function update(id, data) {
+    try {
+        const newData = data
+        const targetDoc = doc(db, 'siswa', id)
+        await updateDoc(targetDoc, newData)
+        return (
+            {
+                id: id,
+                status: true,
+                data: newData
+            }
+        )
+    } catch (error) {
+        console.log(error)
+        return (
+            {
+                error: 'Service',
+                status: false,
+                msg: error
+            }
+        )
+    }
+}
+
+async function remove(id) {
+    try {
+        const targetDoc = doc(db, 'siswa', id)
+        await deleteDoc(targetDoc)
+        
+        return({
+            status: true,
+            msg: `Berhasil hapus siswa dengan id = ${id}`
+        })
+    } catch (error) {
+        return {
+            error: 'Service',
+            error
+        }
+    }
+}
+
+export { get, create, update, remove }
