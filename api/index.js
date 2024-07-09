@@ -5,19 +5,19 @@ import 'dotenv'
 import student from './routes/studentRoutes.js'
 
 const app = Fastify({
-  logger: true,
+    logger: true,
 })
 app.register(multipart)
 
 app.register(student, ({ prefix: '/student' }))
 
 app.get('/', async (req, reply) => {
-  return reply.status(200).type('text/html').send(html)
+    return reply.status(200).type('text/html').send(html)
 })
 
 export default async function handler(req, reply) {
-  await app.ready()
-  app.server.emit('request', req, reply)
+    await app.ready()
+    app.server.emit('request', req, reply)
 }
 
 const html = `
@@ -41,10 +41,36 @@ const html = `
     <h2>List API</h2>
     <ul>
         <li><strong>GET</strong> <code>api.radya.fun/student</code> - Mengambil daftar semua siswa</li>
+        <li><strong>GET</strong> <code>api.radya.fun/student/:id</code> - Mengambil siswa berdasarkan ID</li>
         <li><strong>POST</strong> <code>api.radya.fun/student</code> - Menambahkan data siswa baru</li>
         <li><strong>PUT</strong> <code>api.radya.fun/student/:id</code> - Memperbarui data siswa berdasarkan ID</li>
         <li><strong>DELETE</strong> <code>api.radya.fun/student/:id</code> - Menghapus data siswa berdasarkan ID</li>
     </ul>
+    <h2>Detail Endpoint</h2>
+    <h3>GET <code>api.radya.fun/student</code></h3>
+    <p>Endpoint ini digunakan untuk mendapatkan semua data siswa.</p>
+    <h3>GET <code>api.radya.fun/student/:id</code></h3>
+    <p>Endpoint ini digunakan untuk mendapatkan siswa berdasarkan ID.</p>
+    <h3>POST <code>api.radya.fun/student</code></h3>
+    <p>Endpoint ini digunakan untuk menambahkan data siswa baru. Data yang perlu dikirim dalam request body adalah sebagai berikut:</p>
+    <ul>
+        <li><code>nama_siswa</code> (string) - Nama siswa</li>
+        <li><code>kelas</code> (string) - Kelas siswa</li>
+        <li><code>gender</code> (string) - Jenis kelamin siswa</li>
+        <li><code>time</code> (string) - Waktu pendaftaran</li>
+        <li><code>foto_url</code> (string) - URL atau file foto siswa</li>
+    </ul>
+    <h3>PUT <code>api.radya.fun/student/:id</code></h3>
+    <p>Endpoint ini digunakan untuk memperbarui data siswa berdasarkan ID. Data yang dikirim bisa mencakup semua <span style="font-weight:bolder;" >atau hanya beberapa data yang ingin di-update</span>. Data yang dapat di-update adalah sebagai berikut:</p>
+    <ul>
+        <li><code>nama_siswa</code> (string) - Nama siswa</li>
+        <li><code>kelas</code> (string) - Kelas siswa</li>
+        <li><code>gender</code> (string) - Jenis kelamin siswa</li>
+        <li><code>time</code> (string) - Waktu pendaftaran</li>
+        <li><code>foto_url</code> (string) - URL atau file foto siswa</li>
+    </ul>
+    <h3>DELETE <code>api.radya.fun/student/:id</code></h3>
+    <p>Endpoint ini digunakan untuk menghapus siswa menggunakan ID.</p>
     <h2>Contoh Penggunaan Fetch API</h2>
     <pre>
 <code>
