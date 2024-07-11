@@ -1,8 +1,22 @@
-import { get, create, update, remove } from "../service/studentService"
+import { get, create, update, remove, getDetail } from "../service/studentService"
 
 async function getStudent(req, reply) {
     const siswaData = await get()
     reply.send(siswaData)
+}
+
+async function getStudentDetail(req, reply) {
+    try {
+        const id = req.params.id
+        const send = await getDetail(id)
+        reply.send(send)
+    } catch (error) {
+        reply.send({
+            status: false,
+            errorLocation: 'Controller',
+            msg: error
+        })
+    }
 }
 
 async function createStudent(req, reply) {
@@ -41,4 +55,4 @@ async function deleteStudent(req, reply) {
     }
 }
 
-export { getStudent, createStudent, updateStudent, deleteStudent }
+export { getStudent, getStudentDetail, createStudent, updateStudent, deleteStudent }
