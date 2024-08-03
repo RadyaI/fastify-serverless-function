@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 import multipart from 'fastify-multipart'
+import cors from 'cors'
 import 'dotenv'
 
 import student from './routes/studentRoutes.js'
@@ -7,6 +8,8 @@ import student from './routes/studentRoutes.js'
 const app = Fastify({
     logger: true,
 })
+
+app.register(cors)
 app.register(multipart)
 
 app.register(student, ({ prefix: '/student' }))
